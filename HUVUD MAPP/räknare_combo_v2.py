@@ -1,17 +1,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-# Förklaraing till koden:
+                        # Förklaraing i stora drag:
 
 # Geometri: Layouten för knapparna och displayens positoner sätts med setGeometry
 
 # Signal Handling: knapparna triggar press:it funktioen när dom clickas. den här 
 # funktionen tar hand om när dom olika knapparna är "pressed" (number appending, 
-# operations, etc.).
-
+# operations, etc.)
 
 # Main class (Ui_MainWindow):
 # Den här klassen skaper och sätter upp hela GUI genom PyQt5. Den skapar ett fönster(MainWindow)
 # med ett rutnät av knappar och en räknar display.
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
 
@@ -73,7 +74,7 @@ class Ui_MainWindow(object):
         self.fyraButton.setObjectName("fyraButton")
         
         # Knappen X (miltiplikation)
-        self.multi_pButton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it("X"))
+        self.multi_pButton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it("*"))
         self.multi_pButton.setGeometry(QtCore.QRect(300, 220, 75, 75))
         font = QtGui.QFont()
         font.setPointSize(26)
@@ -137,7 +138,7 @@ class Ui_MainWindow(object):
         self.aditionButton.setObjectName("aditionButton")
         
         # Knappen =
-        self.likamedButton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it("="))
+        self.likamedButton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.math_it())
         self.likamedButton.setGeometry(QtCore.QRect(210, 400, 75, 75))
         font = QtGui.QFont()
         font.setPointSize(26)
@@ -152,8 +153,8 @@ class Ui_MainWindow(object):
         self.nollButton.setFont(font)
         self.nollButton.setObjectName("nollButton")
        
-        # Kanppen . 
-        self.komaButton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it("."))
+        # Deciamal . 
+        self.komaButton = QtWidgets.QPushButton(self.centralwidget, clicked= lambda: self.koma_it())
         self.komaButton.setGeometry(QtCore.QRect(120, 400, 75, 75))
         font = QtGui.QFont()
         font.setPointSize(26)
@@ -180,6 +181,28 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    # låt oss räkna
+    def math_it(self):
+        screen = self.label.text()
+        try:
+        #här görs matematiken
+            answer = eval(screen) #eval i python betyder evaulera den tar 2 siffror och 
+                               # fattar vad den ska göra om det finns ett aritmiskt tecken mellan 
+        
+            self.label.setText(str(answer))
+        except:
+            self.lable.setText("ERROR")
+        
+    #funktion för decimal tecken och hur den ska bete sig
+    def koma_it(self): # avgör att man inte kan läga in mer än ett decimal tecken
+        screen = self.label.text()
+        screen [-1] == "." # detta säger till så att man inte kan göra ett deciaml tecken i slutet av en sifra 
+        pass 
+        if"." in screen:
+            pass
+        else: 
+            self.label.setText(f'{screen}.')
+
         
     # Den här funktioen uppdaterar displayen (lable) baserad på den tryckda knappen. om (c) alltså 
     # Clear är tryckd så rensas displayen och den återsätts till 0.
@@ -216,6 +239,9 @@ class Ui_MainWindow(object):
         self.nollButton.setText(_translate("MainWindow", "0"))
         self.komaButton.setText(_translate("MainWindow", "."))
         self.clearButton.setText(_translate("MainWindow", "Clear"))
+
+
+
 
 
 if __name__ == "__main__":

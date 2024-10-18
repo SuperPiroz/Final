@@ -3,43 +3,36 @@ from PyQt5.QtWidgets import QCalendarWidget, QVBoxLayout
 from PyQt5.QtCore import QDate
 import json
 import os
-                            #Förklaring till min kod:
-#Import av moduler: 
-# Importerar nödvändiga bibliotek från PyQt5 för att skapa GUI (grafiskt användargränssnitt), 
-# samt moduler för att hantera datum och filer (JSON och OS).
+                            #Förklaring i stora drag:
+# Import av moduler: Importerar nödvändiga bibliotek från PyQt5 för att skapa GUI 
+# (grafiskt användargränssnitt), samt moduler för att hantera datum och filer (JSON och OS).
 
-#Task-klassen: 
-# Skapar en klass för att representera en uppgift, som kan ha ett unikt ID, kategori (beskrivning), 
-# och deadline. Just nu används den inte aktivt i koden.
+# Task-klassen: Skapar en klass för att representera en uppgift, som kan ha ett unikt ID, 
+# kategori (beskrivning), och deadline. Just nu används den inte aktivt i koden.
 
-#Ui_MainWindow-klassen: 
-# Huvudklassen som hanterar GUI-element som kalender, uppgiftslista, 
+# Ui_MainWindow-klassen: Huvudklassen som hanterar GUI-element som kalender, uppgiftslista, 
 # inmatningsfält, och knappar.
 
-#Setup av GUI-komponenter: 
-# Innehåller kod för att skapa och placera alla komponenter (kalender, uppgiftslista, textfält, knappar) 
-# och applicera stil på dem.
+# Setup av GUI-komponenter: Innehåller kod för att skapa och placera alla komponenter 
+# (kalender, uppgiftslista, textfält, knappar) och applicera stil på dem.
 
-#Kalenderwidget och uppgiftslista: 
-# Kalendern tillåter användare att välja datum. Uppgifterna visas i en lista kopplad till det valda datumet.
+# Kalenderwidget och uppgiftslista: Kalendern tillåter användare att välja datum. Uppgifterna 
+# visas i en lista kopplad till det valda datumet.
 
-#Inmatningsfält och knappar: 
-# Användare kan skriva in nya uppgifter och ange en deadline, som sedan kan läggas till eller tas bort 
-# från listan via "Add"- och "Remove"-knappar.
+# Inmatningsfält och knappar:  Användare kan skriva in nya uppgifter och ange en deadline, 
+# som sedan kan läggas till eller tas bort från listan via "Add"- och "Remove"-knappar.
 
-#Laddning av uppgifter: 
-# Funktionen load_tasks_for_date laddar uppgifter från en fil (om den finns) när ett nytt datum väljs 
-# i kalendern.
+# Laddning av uppgifter:  Funktionen load_tasks_for_date laddar uppgifter från en fil (om den finns) 
+# när ett nytt datum väljs i kalendern.
 
-#Spara uppgifter: 
-# Funktionen save_tasks_for_date sparar aktuella uppgifter för det valda datumet i en JSON-fil.
+# Spara uppgifter: Funktionen save_tasks_for_date sparar aktuella uppgifter för det valda 
+# datumet i en JSON-fil.
 
-#Lägga till och ta bort uppgifter: 
-# Funktionen add_task lägger till en uppgift till listan, och remove_task tar bort en vald uppgift 
-# från listan.
+# Lägga till och ta bort uppgifter: Funktionen add_task lägger till en uppgift till listan, 
+# och remove_task tar bort en vald uppgift från listan.
 
-#Huvudprogrammet: 
-# Startar applikationen och visar huvudfönstret där användaren kan interagera med gränssnittet.
+# Huvudprogrammet: Startar applikationen och visar huvudfönstret där användaren kan interagera 
+# med gränssnittet.
 
 class Task:
     def __init__(self, task_id, category, dead_line=None):
